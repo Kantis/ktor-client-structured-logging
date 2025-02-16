@@ -1,4 +1,4 @@
-package com.github.kantis.ktor.client.structured.logging.hooks
+package io.github.kantis.ktor.client.structured.logging.hooks
 
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.api.ClientHook

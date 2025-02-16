@@ -1,4 +1,4 @@
-package com.github.kantis.ktor.client.structured.logging
+package io.github.kantis.ktor.client.structured.logging
 
 internal fun sanitizeHeaders(
    headers: Set<Map.Entry<String, List<String>>>,

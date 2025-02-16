@@ -1,4 +1,4 @@
-package com.github.kantis.ktor.client.structured.logging
+package io.github.kantis.ktor.client.structured.logging
 
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.utils.io.KtorDsl
@@ -11,8 +11,8 @@ public class StructuredLoggingConfig {
    internal var filters = mutableListOf<(HttpRequestBuilder) -> Boolean>()
    internal var requestLogConfig: RequestLogConfig = RequestLogConfig(true, true, false, Level.INFO)
    internal var responseLogConfig: RequestLogConfig = RequestLogConfig(true, true, false, Level.INFO)
-   internal var requestLogger = LoggerFactory.getLogger("com.github.kantis.ktor.client.structured.logging.RequestLogger")
-   internal var responseLogger = LoggerFactory.getLogger("com.github.kantis.ktor.client.structured.logging.ResponseLogger")
+   internal var requestLogger = LoggerFactory.getLogger("io.github.kantis.ktor.client.structured.logging.RequestLogger")
+   internal var responseLogger = LoggerFactory.getLogger("io.github.kantis.ktor.client.structured.logging.ResponseLogger")
 
    /**
     * Allows you to filter log messages for calls matching a [predicate].

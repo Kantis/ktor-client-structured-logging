@@ -4,7 +4,7 @@ plugins {
    alias(libs.plugins.publish)
 }
 
-group = "com.github.kantis"
+group = "io.github.kantis"
 version = "0.1-SNAPSHOT"
 
 repositories {

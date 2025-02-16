@@ -1,8 +1,8 @@
-package com.github.kantis.ktor.client.structured.logging
+package io.github.kantis.ktor.client.structured.logging
 
-import com.github.kantis.ktor.client.structured.logging.hooks.ReceiveHook
-import com.github.kantis.ktor.client.structured.logging.hooks.ResponseHook
-import com.github.kantis.ktor.client.structured.logging.hooks.SendHook
+import io.github.kantis.ktor.client.structured.logging.hooks.ReceiveHook
+import io.github.kantis.ktor.client.structured.logging.hooks.ResponseHook
+import io.github.kantis.ktor.client.structured.logging.hooks.SendHook
 import io.ktor.client.plugins.api.ClientPlugin
 import io.ktor.client.plugins.api.createClientPlugin
 import io.ktor.client.plugins.observer.ResponseHandler

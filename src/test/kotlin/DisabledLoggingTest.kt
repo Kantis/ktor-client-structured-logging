@@ -1,7 +1,7 @@
-package com.github.kantis.ktor.client.structured.logging
+package io.github.kantis.ktor.client.structured.logging
 
-import com.github.kantis.ktor.client.structured.logging.utils.RecordingLoggerExtension
-import com.github.kantis.ktor.client.structured.logging.utils.returnsJson
+import io.github.kantis.ktor.client.structured.logging.utils.RecordingLoggerExtension
+import io.github.kantis.ktor.client.structured.logging.utils.returnsJson
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.client.WireMock.get
 import com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo

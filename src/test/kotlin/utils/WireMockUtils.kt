@@ -1,4 +1,4 @@
-package com.github.kantis.ktor.client.structured.logging.utils
+package io.github.kantis.ktor.client.structured.logging.utils
 
 import com.github.tomakehurst.wiremock.client.MappingBuilder
 import com.github.tomakehurst.wiremock.client.WireMock

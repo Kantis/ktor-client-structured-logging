@@ -1,4 +1,4 @@
-package com.github.kantis.ktor.client.structured.logging.utils
+package io.github.kantis.ktor.client.structured.logging.utils
 
 import io.kotest.core.extensions.TestCaseExtension
 import io.kotest.core.test.TestCase

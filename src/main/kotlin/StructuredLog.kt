@@ -1,4 +1,4 @@
-package com.github.kantis.ktor.client.structured.logging
+package io.github.kantis.ktor.client.structured.logging
 import io.ktor.http.Url
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonPrimitive
