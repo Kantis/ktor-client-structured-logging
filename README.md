@@ -66,3 +66,14 @@ val client = HttpClient(CIO) {
   }
 }
 ```
+
+## Log implementation support
+
+### Log4j2
+
+Log4j2 does not yet have full support for structured logging. The fact that it uses the ThreadContext to store the structured
+data makes it risky when used with coroutines. https://github.com/apache/logging-log4j2/issues/1813
+
+### Logback
+
+TODO..

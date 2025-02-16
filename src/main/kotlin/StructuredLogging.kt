@@ -36,11 +36,12 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.JsonUnquotedLiteral
 import org.slf4j.Logger
+import org.slf4j.event.Level
 
 private val DisableLogging = AttributeKey<Unit>("DisableLogging")
 
 private val serializer = Json {
-   prettyPrint = true
+   prettyPrint = false
    encodeDefaults = false
 }
 
@@ -59,11 +60,14 @@ public val StructuredLogging: ClientPlugin<StructuredLoggingConfig> =
       suspend fun logRequest(request: HttpRequestBuilder): OutgoingContent? {
          val content = request.body as OutgoingContent
 
-         val requestLogWithoutBody = StructuredRequestLog(
-            Url(request.url),
-            request.method.value,
-            if (requestLogConfig.headers) sanitizeHeaders(request.headers.entries(), sanitizedHeaders) else null,
-         )
+         val logEventBuilder =
+            requestLogger.atLevel(Level.INFO).apply {
+               addKeyValue("url", request.url.toString())
+               addKeyValue("method", request.method.value)
+               if (requestLogConfig.headers) {
+                  addKeyValue("headers", serializer.encodeToString(sanitizeHeaders(request.headers.entries(), sanitizedHeaders)))
+               }
+            }
 
          return if (requestLogConfig.body) {
             val charset = content.contentType?.charset() ?: Charsets.UTF_8
@@ -72,16 +76,17 @@ public val StructuredLogging: ClientPlugin<StructuredLoggingConfig> =
             GlobalScope.launch(Dispatchers.Default + MDCContext()) {
                try {
                   val text = channel.tryReadText(charset)
-                  val toLog = text?.let(::JsonUnquotedLiteral)?.let(requestLogWithoutBody::withBody) ?: requestLogWithoutBody
-                  requestLogger.info(serializer.encodeToString(toLog))
+                  text?.let {
+                     logEventBuilder.addKeyValue("body", text).log()
+                  } ?: logEventBuilder.log()
                } catch (cause: Throwable) {
-                  requestLogger.info(serializer.encodeToString(requestLogWithoutBody))
+                  logEventBuilder.log()
                }
             }
 
             content.observe(channel)
          } else {
-            requestLogger.info(serializer.encodeToString(requestLogWithoutBody))
+            logEventBuilder.log()
             null
          }
       }
