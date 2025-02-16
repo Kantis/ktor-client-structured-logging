@@ -19,7 +19,7 @@ env:
 jobs:
    publish:
       timeout-minutes: 30
-      runs-on: macos-latest
+      runs-on: ubuntu-latest
       steps:
          - uses: actions/checkout@v4
            with:
@@ -28,22 +28,14 @@ jobs:
          - name: Set up Java
            uses: actions/setup-java@v4
            with:
-              distribution: 'zulu'
+              distribution: 'temurin'
               java-version: 17
 
-         - name: assemble
-           uses: gradle/gradle-build-action@v2
-           with:
-              arguments: assemble -Pversion=${{ inputs.version }}
+         - name: Setup Gradle
+           uses: gradle/actions/setup-gradle@v3
 
-         - name: Upload reports
-           if: failure()
-           uses: actions/upload-artifact@v4
-           with:
-              name: 'reports-${{ matrix.os }}'
-              path: '**/build/reports/**'
+         - name: Build with Gradle
+           run: ./gradlew build --scan --full-stacktrace
 
          - name: Publish final version
-           uses: gradle/gradle-build-action@v2
-           with:
-              arguments: -Pversion=${{ inputs.version }} publishAllPublicationsToMavenCentralRepository
+           run: ./gradlew -Pversion=${{ inputs.version }} publishAllPublicationsToMavenCentralRepository
