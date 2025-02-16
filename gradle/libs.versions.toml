@@ -37,3 +37,4 @@ logging = ["log4j-core", "log4j-json", "log4j-api", "log4j-kotlinApi", "log4j-sl
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+publish = { id = "com.vanniktech.maven.publish", version="0.28.0" }
