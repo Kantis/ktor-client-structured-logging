@@ -4,9 +4,6 @@ plugins {
    alias(libs.plugins.publish)
 }
 
-group = "io.github.kantis"
-version = "0.1-SNAPSHOT"
-
 repositories {
    mavenCentral()
    maven("https://oss.sonatype.org/content/repositories/snapshots") { mavenContent { snapshotsOnly() } }
